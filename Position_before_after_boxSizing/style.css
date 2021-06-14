@@ -1,0 +1,243 @@
+body {
+  width: 90%;
+  margin: auto;
+  background-color: rgba(240, 255, 255, 0.727);
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.9em;
+  font-size: 12px;
+}
+
+#marginT {
+  margin-top: 190px;
+}
+
+.Bloc {
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-weight: 400;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(95, 158, 160, 0.248);
+}
+
+h2 {
+  font-weight: 400;
+  display: inline-block;
+  border-bottom: cadetblue solid 2px;
+}
+
+.marginh2 {
+  margin-bottom: 100px;
+}
+
+p {
+  font-size: 1.3em;
+}
+
+nav {
+  background-color: black;
+  color: white;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+nav p {
+  font-weight: bolder;
+  margin-left: 1%;
+  text-transform: uppercase;
+}
+nav #Navigation {
+  display: flex;
+  height: 80px;
+  justify-content: space-around;
+  align-items: center;
+}
+nav #Navigation span {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: white solid 1px;
+}
+nav #Navigation a {
+  color: white;
+  text-decoration: none;
+}
+
+#viewport {
+  background-color: rgba(211, 211, 211, 0.309);
+  text-align: center;
+  padding: 1%;
+}
+
+.divCenter {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+#carreBleu {
+  width: 300px;
+  height: 300px;
+  background-color: cadetblue;
+  position: relative;
+}
+
+#carreVert {
+  width: 100px;
+  height: 100px;
+  background-color: #1a551f;
+  position: absolute;
+  bottom: 100px;
+  right: -50px;
+}
+
+#carreOrange {
+  width: 100px;
+  height: 100px;
+  background-color: #ac8012;
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  z-index: -1;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+#boximg {
+  position: relative;
+  display: inline-block;
+}
+#boximg img {
+  width: 400px;
+}
+#boximg ion-icon {
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#boximg:hover ion-icon {
+  opacity: 1;
+}
+
+#parentcarreViolet {
+  border: purple solid 1px;
+  position: relative;
+  width: 100%;
+  height: 130px;
+}
+
+#carreViolet, #carreViolet2, #carreViolet3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-color: #551755;
+}
+
+#carreViolet2 {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#carreViolet3 {
+  transform: translate(-50%, -50%) rotate(15deg);
+  transform-origin: 100% 100%;
+}
+
+.demo {
+  width: 150px;
+  height: 150px;
+  background-color: #0c0c6e;
+  border: 10px solid rgba(255, 217, 0, 0.707);
+  padding: 10px;
+  color: white;
+  margin-left: 50px;
+}
+
+#demo2 {
+  margin-top: 30px;
+  box-sizing: border-box;
+  line-height: normal;
+}
+
+#marginbottom {
+  height: 100px;
+}
+
+#bg-grey {
+  padding: 10px;
+  background-color: rgba(176, 224, 230, 0.323);
+}
+
+h3 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  position: relative;
+}
+
+h3::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 5px;
+  background: #326a32;
+  bottom: -10px;
+  transition: width 0.5s ease-in-out;
+}
+
+h3:hover::before {
+  width: 255px;
+}
+
+#card {
+  margin: auto;
+  margin-top: 40px;
+  width: 50%;
+  border: green solid 1px;
+  background-color: #bedabe;
+  padding: 20px;
+  position: relative;
+}
+
+#card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #125c12;
+  top: 0;
+  left: 0;
+  transform: rotateZ(3deg);
+  z-index: -1;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  width: 100%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+footer p {
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

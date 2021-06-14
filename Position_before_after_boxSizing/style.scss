@@ -1,0 +1,234 @@
+//REGLES GENERALES
+body{
+    width: 90%;
+    margin: auto;
+    background-color: rgba(240, 255, 255, 0.727);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.9em;
+    font-size: 12px;
+}
+//Margin pour décaler par rapport à la navbar fixed
+#marginT{
+    margin-top: 190px;
+}
+.Bloc{
+    margin-bottom: 40px;
+}
+h1{
+    font-weight: 400;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(95, 158, 160, 0.248);
+
+}
+h2{
+    font-weight: 400;
+    display: inline-block;
+    border-bottom: cadetblue solid 2px;
+}
+.marginh2{
+    margin-bottom:100px;
+}
+p{
+    font-size: 1.3em;
+}
+//REGLE NAVBAR
+nav{
+    background-color: black;
+    color: white;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    p{
+        font-weight: bolder;
+        margin-left: 1%;
+        text-transform: uppercase;
+    }
+    #Navigation{
+        display: flex;
+        height: 80px;
+        justify-content: space-around;
+        align-items: center;
+        span{
+            text-transform: uppercase;
+            font-weight: bold;
+            border-bottom: white solid 1px;
+          
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+//Regle Chapitre Position Fixed
+#viewport{
+    background-color: rgba(211, 211, 211, 0.309);
+    text-align: center;
+    padding: 1%;
+}
+//Regle Chapitre Position absolute et relative
+.divCenter{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+#carreBleu{
+    width: 300px;
+    height: 300px;
+    background-color: cadetblue;
+    position: relative;
+}
+#carreVert{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(26, 85, 31);
+    position: absolute;
+    bottom: 100px;
+    right: -50px;
+}
+#carreOrange{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(172, 128, 18);
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    z-index: -1;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+}
+#boximg{
+    position: relative;
+    display: inline-block;
+    img{
+        width: 400px;
+    }
+    ion-icon{
+        font-size: 40px ;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        color: white;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+}
+#boximg:hover{
+    ion-icon{
+        opacity: 1;
+    }
+}
+//Regles chapitre propriété transform origin
+#parentcarreViolet{
+    border: purple solid 1px;
+    position: relative;
+    width: 100%;
+    height: 130px;
+}
+
+// absolute + top 50% left 50% + transform translate = carré centré dans ma div parent en relatif
+#carreViolet, #carreViolet2, #carreViolet3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: rgb(85, 23, 85);
+}
+#carreViolet2{
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+#carreViolet3{
+    
+    transform: translate(-50%, -50%) rotate(15deg);
+    transform-origin: 100% 100%;
+}
+//Regles propriété box-sizing
+.demo{
+    width: 150px;
+    height: 150px;
+    background-color: rgb(12, 12, 110);
+    border: 10px solid rgba(255, 217, 0, 0.707);
+    padding: 10px;
+    color: white;
+    margin-left: 50px;
+}
+#demo2{
+    margin-top: 30px;
+    box-sizing: border-box;
+    line-height: normal;
+}
+#marginbottom{
+    height: 100px;
+}
+#bg-grey{
+    padding: 10px;
+    background-color: rgba(176, 224, 230, 0.323);
+}
+//regles peusdo-element before et after
+h3{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+}
+h3::before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 5px;
+    background: rgb(50, 106, 50);
+    // top: 51%; //pour le centrer
+    bottom: -10px;
+    transition: width 0.5s ease-in-out;
+    // z-index: -1; //pour le positionner en dessous du h3
+}
+h3:hover::before{
+    width: 255px;
+}
+#card{
+    margin: auto;
+    margin-top: 40px;
+    width: 50%;
+    border: green solid 1px;
+    background-color: rgb(190, 218, 190);
+    padding: 20px;
+    position: relative;
+}
+#card::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgb(18, 92, 18);
+    top: 0;
+    left: 0;
+    transform: rotateZ(3deg);
+    z-index: -1;
+}
+
+// REGLE FOOTER
+footer{
+    background-color: black;
+    color: white;
+    width: 100%;
+    // z-index: 1;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    // position: absolute;
+    p{
+        text-align: center;
+    }
+}

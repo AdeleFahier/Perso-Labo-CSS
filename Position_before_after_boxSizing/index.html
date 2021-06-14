@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>CSS en vrac</title>
+</head>
+
+<body>
+    <nav>
+        <div id="Navigation">
+            <span>Navigation</span>
+            <a href="#fixed">Fixed</a>
+            <a href="#relative">Absolute et relative</a>
+            <a href="#transform">Transform-origin</a>
+            <a href="#boxsizing">Box-sizing</a>
+            <a href="#befafter">Pseudo-element::before et ::after</a>
+        </div>
+    </nav>
+    <div id='marginT'></div>
+    <h1>CSS en vrac : Partie 1</h1>
+    <div class="Bloc">
+        <h2 class="marginh2" id="fixed"></h2>
+        <h2 >Position fixed</h2>
+        <div id="viewport">
+            <p><strong>Viewport</strong> = Zone de visualisation du navigateur. Unité vh = viewport heigh</p>
+            <p>Par exemple si l'on veut qu'une div prenne 100% de la hauteur du viewport, on peut lui indiquer une
+                min-height:
+                100vh;</p>
+        </div>
+        <p>La nav est en position <strong>fixed</strong>, avec une position set à 0 pour top, right et left.</p>
+        <p>Quand on met un élement en position fixed, cet élement sort du flux, donc il perd ses propriétés de display.
+            Par
+            conséquent il faut lui redonner une largeur. Ici nous lui redonnons une width: 100%</p>
+        <p>De façon définitive le footer est en fixed au bottom du viewport. Mais imaginons par exemple un footer qui
+            serait en position
+            absolute. En scrollant, le footer passera au dessus de la navbar fixed, car on fait sortir le footer du
+            flux.
+            Pour être certain que le footer passerait bien en dessous, on va utiliser la propriété
+            <strong>z-index</strong>. C'est la propriété qui va permettre de positionner notre élément sur l'axe Z (la
+            "profondeur"). Pour rappel l'axe Y c'est l'axe vertical, et l'axe X, l'axe horizontal.
+        </p>
+        <p>En donnant par exemple à la nav une valeur z-index = 2 et à l'élément footer un z-index = 1 , c'est comme si
+            la nav était au deuxième étage et le footer au premier. En scrollant au croisement des deux élements, le
+            footer qui n'est qu'au "premier étage" passera en dessous de la nav. </p>
+        <p><u>Pratique courante </u>: On peut voir parfois une valeur de z-index très élevé de type z-index = 9999.
+            C'est par soucis de sécurité, àfin de s'assurer que aucun autre élément ne viendra se positionner au dessus.
+        </p>
+    </div>
+    <div class="Bloc">
+        <h2 class="marginh2" id="relative"></h2>
+        <h2>Position Relative et absolute</h2>
+        <div class="divCenter">
+            <div id="carreBleu">
+                <div id="carreVert"></div>
+                <div id="carreOrange"></div>
+            </div>
+        </div>
+        <p>Les positions relative et absolute vont toujours ensemble. La position absolute va permettre de sortir du
+            flux et de positionner l'élement comme on le souhaite mais toujours par rapport à un parent dont la position
+            est relative.</p>
+        <p>Ici nous donnons au carré bleu une <strong>position relative</strong>, et au carré vert une <strong>position
+                absolute</strong>. Le carré vert se retrouve donc en position absolute par rapport à son élement parent
+            le carré bleu.</p>
+        <p>Nous pouvons à présent positionner notre carré vert par rapport à notre carré bleu grâce aux propriétés top,
+            right, bottom et left.</p>
+        <p><u>Exemples</u> : Si je mets un bottom : 0; alors le carré vert se retrouvera en bas à gauche. Si je rajoute
+            un right : 0; il se retrouve en bas à droite du carré bleu.</p>
+        <p>On peut utiliser des pixels et des pourcentage pour la valeur</p>
+        <p>On peut également utiliser des <strong>valeurs négatives</strong> comme sur ces exemples. Ici le carré vert a
+            pour valeur un bottom : 100px (qui le centre sur la hauteur) et un right : -50px. Et le carré orange à pour
+            valeur -50px pour le top et le left.</p>
+        <p>On peut également donner un Z-index à nos carrés. <strong>Ici le carré orange prend la valeur Z-index :
+                -1</strong> et vient se positionner sous son élement paren. </p>
+        <p><u>Un autre exemple</u> avec <strong>une image et une icon</strong>. Nous allons récupérer un icon dans la
+            bibliothèque en ligne qui s'appelle <strong>Ionicons</strong>. On utilise un script pour linker leur
+            bibliothèque d'icon à notre document. Et ensuite nous pouvons utiliser les icons.</p>
+        <div class="flex-container">
+            <a id="boximg" href="#">
+                <img src="images/singe.jpg" alt="un singe">
+                <ion-icon name="add-circle"></ion-icon>
+            </a>
+        </div>
+
+        <p>Cette image est également un lien, donc le img est "nested" dans un element anchor. La petite icon est placée
+            au même niveau que l'img dans cet element "a". Ici nous mettons l'element "a" en position relative et l'icon
+            en positions absolute. On peut a présent jouer sur le top, right, bottom et left pour centrer notre élement.
+        </p>
+        <p>Après avoir positionné l'icon en top : 50% et right : 50%, on constate que l'icon n'est pas centré. Pourquoi
+            ? Car l'element s'est centré en fonction du coin supérieur gauche de notre icon. Pour remédier à cela nous
+            allons <strong>déplacer l'icon de sa moitié vers la droite et vers le haut</strong>, afin que le centre de
+            l'image soit le point de réfèrence pour centrer l'icon par rapport à son parent relatif. Pour cela nous
+            allons utiliser <strong>la propriété transform avec un translate (qui prend les propriété de l'axe x, puis
+                de l'axe y).</strong>.</p>
+        <p>Exemple : <strong>transform : translate (50%, -50%)</strong>. En gros on lui dit de se déplacer de sa moitié
+            sur l'axe X vers la droite, et de sa moitié sur l'axe Y vers le haut</p>
+        <p>Pour terminer nous allons faire <strong>une petite animation</strong>. Nous allons dire à l'icon que par
+            défaut il a une <strong>opacity</strong> à 0. En revanche en <strong>:hover</strong> sur le link (donc ici
+            l'image) son opacité passe à 1. Et enfin nous allons rajouter une petite transition sur l'opacité à l'icon
+            directement comme ceci : </p>
+        <p><strong>transition : opacity (ce que l'on cible) 0.5s (le temps de la transition) ease-in-out (le style de
+                transition)</strong>.</p>
+    </div>
+    <div class="Bloc#">
+        <h2 class="marginh2" id="transform"></h2>
+        <h2>La propriété Transform-Origin</h2>
+        <p>Propriété importante pour faire des animations CSS.</p>
+        <div id=parentcarreViolet>
+            <div id=carreViolet></div>
+        </div>
+        <p>Ici le container est en border violet. On lui applique un position : relative. Notre carré Violet est en position absolute par rapport à son parent. Pour le centrer, on lui applique un top : 50% et un left : 50%. Comme pour le cas précédent, le carré sera en centré selon le coin top gauche. Pour y remédier, on va grâce à transform : translate(-50%, -50%) le décaler de sa moitié sur l'axe x vers la gauche et le décaler de sa moitié sur l'axe y vers le haut (d'où le négatif).</p>
+        <p>Bien ceci étant fait, on peut se focaliser sur la propriété <strong>transform origin</strong>. Elle sert à changer le point d'origine de transformation d'un élément. Sur notre carré ici le point d'origine est le centre par exemple. </p>
+        <p>Si je lui applique un transform : translate(-50%, -50%) <strong>rotate(45deg)</strong>;</p>
+        <div id=parentcarreViolet>
+            <div id=carreViolet2></div>
+        </div>
+        <p>Nous voyons ici que <strong>la rotation se fait sur le point d'origine qui est au centre du carré</strong>. Le carré tourne sur son centre car par défaut la valeur de la propriété est comme tel <strong>transform-origin: 50% 50%;</strong> (c'est à dire en partant du haut gauche, on fait 50% sur l'axe x, puis 50% sur l'axe y, on se retrouve au centre du carré)</p>
+        <p>Ce point d'origine peut être changé.</p>
+        <div id=parentcarreViolet>
+            <div id=carreViolet3></div>
+        </div>
+        <p>Ici le point d'origine a été changé. Avec un <strong>transform-origin: 100% 100%;</strong> (c'est à dire 100% sur l'axe X, puis 100% sur l'axe y, ce qui nous amène au bord en bas à droite). Le coin bas-droite devient le nouveau point d'origine pour la rotation.</p>
+        <p>A savoir aussi que par exemple un x=100%=top</p>
+        <p><u>Par exemple</u> : un transform-origin: top right = 100% 0% (tout au bout de l'axe x c'est à dire le coin en haut à droite)</p>
+        <p>Ce point d'origine peut également se situer en dehors de notre carré. Par exemple on peut position ce point à transform-origin: 200% 200%;</p>
+    </div>
+    <div class="Bloc">
+        <h2 class="marginh2" id="boxsizing"></h2>
+        <h2>La propriété Box-Sizing</h2>
+        <p>Par défaut la propiété box-sizing a pour valeur "content-box" </p>
+        <div class="demo">Carre bleu d'une valeur de 150x150 + une border de 10px qui viennent par défaut s'ajouter à la taille de mon carré.</div>
+        <div class="demo" id="demo2">Carre bleu toujours d'une valeur de 150x150 + une border de 10px qui cette fois a la valeur border-box</div>
+        <p>La valeur <strong>border-box</strong> permet d'inclure la border dans la taille définie de l'élement.</p>
+        <p>On peut appliquer cette propriété box-sizing:border-box à tous nos élements en le mettant dans une déclaration au début de notre CSS :</p>
+        <p id="bg-grey">*, ::after, ::before { box-sizing:border-box; }</p>
+        <p>C'est par exemple une pratique que l'on retrouve dans les library comme Bootstrap.</p>
+    </div> 
+    <div class="Bloc">
+        <h2 class="marginh2" id="befafter"></h2>
+        <h2>Les pseudo-éléments ::before et ::after</h2>
+        <h3>::before et ::after</h3>
+        <p>Au dessus nous avons un h3 en position relative. nous allons lui rajouter un pseudo-élement before. Nous ciblons notre h3::before et nous lui donner d'abord un content. Ce content peut être un texte, une image ou rien du tout. Si nous créons nous même l'élement il faut préciser un content vide, donc <strong>content:'';</strong></p>
+        <p>Ensuite nous donnons à notre h3::before une position absolute. </p>
+        <p>Nous lui donnons une width et une height, et nous voyons que par défaut il est positionné au début. On aurait aussi pu mettre un after, et par défaut notre élément aurait été positionné à la fin. Dans ce cas ici, ça n'a pas d'importance before ou after car on va pouvoir venir positionner l'élèment nous même grâce à sa position absolute. Si l'on veut le positionner tout en bas, on lui donne un bottom à 0, et on peut même lui mettre un bottom négatif, par exemple un bottom : -10px.</p>
+        <p>Ici il faut bien comprendre que notre élement before est lié à notre h3, par conséquent si on donne à notre before une width de 100%, ce sera 100% de son élement parent.</p>
+        <p>On peut également utiliser le z-index si l'on souhaite positionner l'élement en dessous par exemple.</p>
+        <p>On peut également faire des animations avec ces pseudo élèments. Par exemple on lui donne par défaut une width de 0, mais lui ajoute une largeur au hover sur h3. h3:hover::before{width: 120px}. Pour l'animation on va rajouter sur notre élément ::before une transition qui cible la width : <strong>transition: width 0;5s ease-in-out;</strong></p>
+        <p>Autre exemple avec une carte à laquelle on va rajouter un pseudo élement pour créer un effet comme ci deux cartes étaient empilées l'une sur l'autre.</p>
+        <p id="card">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum non corrupti accusamus, placeat molestiae dolorem magni officiis, veritatis vel sequi recusandae cumque nostrum impedit totam accusantium? Sint molestiae vitae delectus?</p>
+        <p>On utilise une position relative pour la carte, une position absolute pour le pseudo élement. Le ::before a un content vide, un top:0 et un left:0 pour bien se positionner sur la carte. En suite nous utilisons un <strong>tranform: rotateZ(2deg)</strong> pour faire une rotation à notre pseudo élément.</p>
+        <p>Enfin un z-index-1 pour positionner notre ::before (en vert foncé) en dessous de notre carte.</p>
+    </div>
+    <div id="marginbottom"></div>
+    <footer>
+        <p>Je suis le footer en position fixed au bottom du viewport</p>
+
+    </footer>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>
